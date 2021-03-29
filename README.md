@@ -26,6 +26,9 @@ Home Page:
 New Post Page:
 <img src="screenshots/3.png" width="100%" >
 
+Alumni Can add Job details:
+<img src="screenshots/11.png" width="100%" >
+
 Alumni Timeline:
 <img src="screenshots/10.png" width="100%" >
 
