@@ -78,13 +78,13 @@
 
         <main class="py-4">
             @yield('content')
-            <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+            <link rel="stylesheet" href="{{ asset('css/vendor/toastr.min.css') }}">
         </main>
 
         
     </div>
-    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/toastr.min.js') }}"></script>
     {!! Toastr::message() !!}
 
 

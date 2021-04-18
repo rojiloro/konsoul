@@ -104,6 +104,6 @@ Route::get('/postView/fav/rmv/{id}', 'userController@RemoveFavourite')->name('Re
 
 Route::get('/waitting-for-approval', 'HomeController@waitingForApproval')->name('waitting-for-approval');
 
-Route::get('login/#signup', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::get('login/#signup', 'Auth\RegisterController@showRegistrationForm')->name('daftar');
 
-Route::get('sendemail', 'AdminController@sendEmail')->name('register');
+Route::get('sendemail', 'AdminController@sendEmail')->name('sendemail');
