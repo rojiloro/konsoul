@@ -40,18 +40,28 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
 
-                        @if(Auth::user()->role!=0)
+                        @if(Auth::user()->role!=0 && Auth::user()->role!=1)
                         <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('mypost') }}>Post Murid</a> 
+                            <a class="dropdown-item" href={{ route('mypost') }}>Konsulan Murid</a> 
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('myFavPost') }}>Favorit Konsul</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('allUser') }}>Data Murid</a>
+                        </li>
+                        
+                        @elseif(Auth::user()->role==1)                     
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('mypost') }}>My Posts</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('myFavPost') }}>Favourite Posts</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('allUser') }}>Daftar Murid</a>
-                        </li>
                         @endif
                         @endauth
                     </ul>
@@ -70,11 +80,6 @@
                                 </li>
                             @endif
                         @else
-                        <ul class="navbar-nav mr-auto mt-1">
-                            <li class="nav-item">
-                                <a class="dropdown-item" href={{ route('home') }}>Dashboard </a>
-                            </li>
-                        </ul>
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

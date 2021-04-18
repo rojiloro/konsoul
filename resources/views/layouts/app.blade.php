@@ -39,10 +39,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                        <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('home') }}>Dashboard </a>
-                        </li>
-                        
+                        @if(Auth::user()->role==0 || Auth::user()->role==1)
+                     
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('mypost') }}>My Posts</a>
                         </li>
@@ -50,11 +48,21 @@
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('myFavPost') }}>Favourite Posts</a>
                         </li>
+                        
+                        @elseif(Auth::user()->role==2)
+                        
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('mypost') }}>Konsulan Murid</a> 
+                        </li>
 
                         <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('allUser') }}>Users</a>
+                            <a class="dropdown-item" href={{ route('myFavPost') }}>Favorit Konsul</a>
                         </li>
-                        
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('allUser') }}>Data Murid</a>
+                        </li>
+                        @endif
                         @endauth
                     </ul>
 
