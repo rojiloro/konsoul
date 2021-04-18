@@ -1,5 +1,5 @@
 # KonsulKuy
-
+**Dari jiwa ke jiwa untuk menemukan rasa dan keadaan**
 A forum where students,teacher,alumni can be connected with each other. 
 Students, teacher, alumni can post abount diffrent things and anyone logged in can comment or like the post.
 
