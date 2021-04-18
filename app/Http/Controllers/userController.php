@@ -322,7 +322,7 @@ class userController extends Controller
     public function allUser(){
         $search=null;
         $profileImg;
-        $users = User::leftJoin('profile_imgs', 'users.id', '=', 'profile_imgs.user_id')->where('role','!=',0)
+        $users = User::leftJoin('profile_imgs', 'users.id', '=', 'profile_imgs.user_id')->where('role','!=',0)->where('role','!=',2)
         ->select('users.id','users.name','users.role','profile_imgs.path')->paginate(10);
         return view("allusers",compact('users','search'));
     }

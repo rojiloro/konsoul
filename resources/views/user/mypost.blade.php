@@ -4,6 +4,9 @@
 <div class="container">
     
 
+    @auth
+
+    @if(Auth::user()->role!=0 && Auth::user()->role!=2)
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="post" action={{ route('newPost') }} enctype="multipart/form-data">
@@ -43,22 +46,21 @@
             </form>
         </div>
     </div>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ckeditor').ckeditor();
         });
     </script>
 
-<script type="text/javascript">
-    CKEDITOR.replace('wysiwyg-editor', {
-        filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-        filebrowserUploadMethod: 'form'
-    });
-</script>
+    <script type="text/javascript">
+        CKEDITOR.replace('wysiwyg-editor', {
+            filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
+    @endif
+    @endauth
 
-
-    
         @if(count($posts)>0)
         <div class="row justify-content-center mt-5">
             <div class="col-md-12">
