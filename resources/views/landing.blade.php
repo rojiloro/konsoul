@@ -18,7 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 <body>
 
@@ -110,7 +109,7 @@
                     <p class="lead">Lewat Konsoulin aja deh, keluh kesah tersampaikan tanpa pertemuan</p>
                     <hr class="my-2">
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="{{ route('login')}}" role="button">Mau Konsoulin</a>
+                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Mau Konsoulin</a>
                     </p>
                 </div>
                 {{-- Jika user sedang login --}}
@@ -173,8 +172,8 @@
                             </div>
                         @endif
                     </div>
-                @endguest    
-            </div>
+                @endguest
+            </div>           
         </div>
     </div>
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

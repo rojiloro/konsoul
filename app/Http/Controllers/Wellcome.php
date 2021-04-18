@@ -13,7 +13,7 @@ class Wellcome extends Controller
 
     public function welcome() {
         $category=category::paginate(10 , ['*'], 'cat');
-        $posts = Post::where("state", 1)->paginate(10 , ['*'], 'post');
+        $posts = Post::where("state", 1)->orderBy('created_at','DESC')->paginate(10 , ['*'], 'post');
         return view('welcome',compact('posts', 'category'));
     }
 }
