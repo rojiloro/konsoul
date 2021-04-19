@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 <body>
 
@@ -29,19 +29,17 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -52,12 +50,14 @@
                                 </li>
                             @endif
                         @else
+                            
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('home') }}">Setting</a>
                                     <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -77,35 +77,22 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-            <link rel="stylesheet" href="{{ asset('css/vendor/toastr.min.css') }}">
-        </main>
-
-        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="jumbotron">
+                    <h1 class="display-3">Malu ketemu Guru BP</h1>
+                    <p class="lead">Coba Konsoulin aja deh, keluh kesah tersampaikan tanpa pertemuan</p>
+                    <hr class="my-2">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="{{ route('login')}}" role="button">Mau Konsoulin</a>
+                    </p>
+                </div>  
+            </div>
+        </div>
     </div>
-    <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/vendor/toastr.min.js') }}"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
-
-
-    <div class="sidenav">
-        <a href="{{ route('home') }}">Dashboard</a>
-        <hr>
-        <a href="{{ route('admin-users') }}">New Users</a>
-        <hr>
-        <a href="{{ route('admin-users-alumni') }}">Alumni</a>
-        <hr>
-        <a href="{{ route('admin-users-teacher') }}">Teachers</a>
-        <hr>
-        <a href="{{ route('admin-users-student') }}">Students</a>
-        <hr>
-        <a href="{{ route('admin-post') }}">Posts</a>
-        <hr>
-        <a href="{{ route('admin-category') }}">Category</a>
-        <hr>
-        <a href="{{ route('admin-comment') }}">Comments</a>
-    </div>
     
 </body>
 </html>

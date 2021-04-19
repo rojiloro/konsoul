@@ -40,18 +40,28 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
 
-                        @if(Auth::user()->role!=0)
+                        @if(Auth::user()->role!=0 && Auth::user()->role!=1)
                         <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('mypost') }}>My Posts </a> 
+                            <a class="dropdown-item" href={{ route('mypost') }}>Konsulan Murid</a> 
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('myFavPost') }}>Favorit Konsul</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('allUser') }}>Data Murid</a>
+                        </li>
+                        
+                        @elseif(Auth::user()->role==1)                     
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('mypost') }}>My Posts</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('myFavPost') }}>Favourite Posts</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('allUser') }}>Users</a>
-                        </li>
                         @endif
                         @endauth
                     </ul>
@@ -70,11 +80,6 @@
                                 </li>
                             @endif
                         @else
-                        <ul class="navbar-nav mr-auto mt-1">
-                            <li class="nav-item">
-                                <a class="dropdown-item" href={{ route('home') }}>Dashboard </a>
-                            </li>
-                        </ul>
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -83,7 +88,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Setting</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">Setting</a>
+                                    <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -102,17 +108,7 @@
         </nav>
 
         <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-12">
-                    <h2>Wellcome To {{ config('app.name', 'Laravel') }}</h2>
-                    <h5>This web app created by <a href="https://aididalam.dev">Aidid Alam</a></h5>
-                    <hr>
-                </div>
-            </div>
-
-
             <div class="row justify-content-center">
-
                 <div class="col-md-9">
                     @if(count($posts)>0)
                         <div class="row justify-content-center mt-5">
@@ -123,18 +119,25 @@
                             @foreach($posts as $post)
                                 <div class="col-md-12 mt-3">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <b>{{ $post->title }}</b> 
-                                            
+                                        @if ($post->flag == 1)
+                                        <div class="card-header bg-danger">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}" class="text-white">{{ $post->title }}</a></b>
+                                        @elseif ($post->state == 0)
+                                        <div class="card-header bg-warning">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}" class="text-dark">{{ $post->title }}</a></b>
+                                        @else
+                                        <div class="card-header bg-success">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}" class="text-white">{{ $post->title }}</a></b>
+                                        @endif
                                         </div>
-                                        <div class="card-body">{{ Str::limit($post->content, 200) }}</div>
+                                        <div class="card-body">{!! Str::limit($post->content, 200) !!}</div>
                                         <div class="card-footer">
                                             @if($post->category==0)
                                             Cat: Undefined
                                             @else
-                                            Cat: {{ $category[$post->category -1]->name }}
+                                            Category: 
                                             @endif
-                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
+                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Read more...</b></a>
                                         </div>
 
                                     </div>
@@ -155,27 +158,44 @@
                                 <hr>
                             </div>
 
+                            <div class="col-md-12 mt-3">
                             @foreach($category as $cat)
-                                <div class="col-md-12 mt-3">
-                                    <div class="card">
-                                        <div class="card-body">{{ $cat->name }}</div>
-                                        <div class="card-footer"><a href={{ route('CategoryPosts',['id'=>$cat->id]) }}><b>View Category Post...</b></a></div>
+                                    <div class="list-group">
+                                        <a href="{{ route('CategoryPosts',['id'=>$cat->id]) }}"
+                                            class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $cat->name }}
+                                            <span class="badge badge-primary badge-pill">{{ $cat->total }}</span>
+                                        </a>
                                     </div>
-                                </div>
                             @endforeach
+                            </div>
+                            &nbsp;
 
-                        </div>
+                            <div class="col-md-12">
+                                <h2>Tanda Warna</h2>
+                                <hr>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
+                                        Merah
+                                        <span class="badge badge-danger badge-pill">Ada Kata Kasar</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+                                        Kuning
+                                        <span class="badge badge-warning badge-pill">Belum ditanggapi</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+                                        Hijau
+                                        <span class="badge badge-success badge-pill">Sedang ditanggapi</span>
+                                    </li>
+                                </ul>
+                            </div>
 
-                        <div class="d-flex justify-content-center mt-4">
-                            {!! $category->links() !!}
                         </div>
                     @endif
                 </div>
             </div>
-
-            
-
-            
         </div>
     </div>
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

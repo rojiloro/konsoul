@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <b>{{ $post->title }}</b> 
                         </div>
-                        <div class="card-body">{{ Str::limit($post->content, 300) }}</div>
+                        <div class="card-body">{!! Str::limit($post->content, 300) !!}</div>
                         <div class="card-footer">
                             @if($post->category==0)
                                Cat: Undefined

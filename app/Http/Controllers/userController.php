@@ -108,14 +108,20 @@ class userController extends Controller
     public function mypost(){
         $id = Auth::user()->id;
         $category=category::all();
-        $posts = Post::where("user_id", $id)->paginate(10);
+        $role = Auth::user()->role;
+        if ($role != 2) {
+            $posts = Post::where("user_id", $id)->paginate(10);
+        } else {
+            $posts = Post::paginate(10);
+        }
+        
         return view("user.mypost", compact("category",'posts'));
     }
 
     public function newPost(Request $req){
         $id = Auth::user()->id;
         $flag=0;
-        $badword = array("idiot", "stupid", "badword");
+        $badword = array("idiot", "stupid", "badword", "bangsat", "keparat", "sialan");
 
         foreach ($badword  as $w) {
             if(strpos($req["wysiwyg-editor"], $w)){
@@ -229,7 +235,7 @@ class userController extends Controller
 
     public function Comment(Request $req,$id){
         $flag=0;
-        $badword = array("idiot", "stupid", "badword");
+        $badword = array("idiot", "stupid", "badword", "bangsat", "keparat", "sialan");
 
         foreach ($badword  as $w) {
             if(strpos($req->comment, $w)){
@@ -322,7 +328,7 @@ class userController extends Controller
     public function allUser(){
         $search=null;
         $profileImg;
-        $users = User::leftJoin('profile_imgs', 'users.id', '=', 'profile_imgs.user_id')->where('role','!=',0)
+        $users = User::leftJoin('profile_imgs', 'users.id', '=', 'profile_imgs.user_id')->where('role','!=',0)->where('role','!=',2)
         ->select('users.id','users.name','users.role','profile_imgs.path')->paginate(10);
         return view("allusers",compact('users','search'));
     }

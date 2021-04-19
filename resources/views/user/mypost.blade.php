@@ -4,6 +4,9 @@
 <div class="container">
     
 
+    @auth
+
+    @if(Auth::user()->role!=0 && Auth::user()->role!=2)
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="post" action={{ route('newPost') }} enctype="multipart/form-data">
@@ -43,22 +46,21 @@
             </form>
         </div>
     </div>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ckeditor').ckeditor();
         });
     </script>
 
-<script type="text/javascript">
-    CKEDITOR.replace('wysiwyg-editor', {
-        filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-        filebrowserUploadMethod: 'form'
-    });
-</script>
+    <script type="text/javascript">
+        CKEDITOR.replace('wysiwyg-editor', {
+            filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
+    @endif
+    @endauth
 
-
-    
         @if(count($posts)>0)
         <div class="row justify-content-center mt-5">
             <div class="col-md-12">
@@ -76,7 +78,7 @@
                             <span class="badge badge-primary">Approved</span>
                             @endif
                         </div>
-                        <div class="card-body">{{ Str::limit($post->content, 300) }}</div>
+                        <div class="card-body">{!! Str::limit($post->content, 300) !!}</div>
                         <div class="card-footer">
                             @if($post->category==0)
                                Cat: Undefined
@@ -84,7 +86,11 @@
                                Cat: {{ $category[$post->category -1]->name }}
                             @endif
                             <br>
+                        @auth
+                            @if(Auth::user()->role!=0 && Auth::user()->role!=2)
                             <a href="{{ route('postDelete',['id'=>$post->id]) }}" class="btn btn-danger btn-sm mr-4">Delete</a>
+                            @endif
+                        @endauth                            
                             <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
                         </div>
                     </div>

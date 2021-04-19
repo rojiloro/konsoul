@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/vendor/ckeditor.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 <body>
 
@@ -39,10 +39,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                        <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('home') }}>Dashboard </a>
-                        </li>
-                        
+                        @if(Auth::user()->role==0 || Auth::user()->role==1)
+                     
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('mypost') }}>My Posts</a>
                         </li>
@@ -50,11 +48,21 @@
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('myFavPost') }}>Favourite Posts</a>
                         </li>
+                        
+                        @elseif(Auth::user()->role==2)
+                        
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('mypost') }}>Konsulan Murid</a> 
+                        </li>
 
                         <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('allUser') }}>Users</a>
+                            <a class="dropdown-item" href={{ route('myFavPost') }}>Favorit Konsul</a>
                         </li>
-                        
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href={{ route('allUser') }}>Data Murid</a>
+                        </li>
+                        @endif
                         @endauth
                     </ul>
 
@@ -80,8 +88,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Setting</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">Setting</a>
+                                    <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
