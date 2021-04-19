@@ -119,9 +119,16 @@
                             @foreach($posts as $post)
                                 <div class="col-md-12 mt-3">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}">{{ $post->title }}</a></b> 
-                                            
+                                        @if ($post->flag == 1)
+                                        <div class="card-header bg-danger">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}" class="text-white">{{ $post->title }}</a></b>
+                                        @elseif ($post->state == 0)
+                                        <div class="card-header bg-warning">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}" class="text-dark">{{ $post->title }}</a></b>
+                                        @else
+                                        <div class="card-header bg-success">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}" class="text-white">{{ $post->title }}</a></b>
+                                        @endif
                                         </div>
                                         <div class="card-body">{!! Str::limit($post->content, 200) !!}</div>
                                         <div class="card-footer">
@@ -153,14 +160,36 @@
 
                             <div class="col-md-12 mt-3">
                             @foreach($category as $cat)
-                                    <ul class="list-group">
+                                    <div class="list-group">
                                         <a href="{{ route('CategoryPosts',['id'=>$cat->id]) }}"
                                             class="list-group-item d-flex justify-content-between align-items-center">
                                             {{ $cat->name }}
-                                            <span class="badge badge-secondary badge-pill">{{ $cat->total }}</span>
+                                            <span class="badge badge-primary badge-pill">{{ $cat->total }}</span>
                                         </a>
-                                    </ul>
+                                    </div>
                             @endforeach
+                            </div>
+                            &nbsp;
+
+                            <div class="col-md-12">
+                                <h2>Tanda Warna</h2>
+                                <hr>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
+                                        Merah
+                                        <span class="badge badge-danger badge-pill">Ada Kata Kasar</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+                                        Kuning
+                                        <span class="badge badge-warning badge-pill">Belum ditanggapi</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+                                        Hijau
+                                        <span class="badge badge-success badge-pill">Sedang ditanggapi</span>
+                                    </li>
+                                </ul>
                             </div>
 
                         </div>

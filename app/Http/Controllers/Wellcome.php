@@ -26,12 +26,12 @@ class Wellcome extends Controller
         if ($role != 2) {
             $id = Auth::user()->id;
             $posts = Post::join('users','posts.user_id','=', 'users.id')
-            ->select(DB::raw('posts.id, posts.title, posts.content, posts.category, users.name, posts.created_at'))
+            ->select(DB::raw('posts.id, posts.title, posts.content, posts.category, posts.state, posts.flag, users.name, posts.created_at'))
             ->where("role", 2)->orWhere('user_id', $id)
             ->orderBy('created_at','DESC')->paginate(10);
         }else{
             $posts = Post::join('users','posts.user_id','=', 'users.id')
-            ->select(DB::raw('posts.id, posts.title, posts.content, posts.category, users.name, posts.created_at'))
+            ->select(DB::raw('posts.id, posts.title, posts.content, posts.category, posts.state, posts.flag, users.name, posts.created_at'))
             ->orderBy('created_at','DESC')->paginate(10);
         }
         

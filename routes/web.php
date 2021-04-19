@@ -23,6 +23,7 @@ Auth::routes();
 Route::group(['middleware' => 'checkApproval'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
+    // Only Admin
     Route::group(['middleware' => 'checkAdmin'], function () {
         Route::get('admin/users', 'AdminController@users')->name('admin-users');
 
@@ -55,6 +56,12 @@ Route::group(['middleware' => 'checkApproval'], function () {
 
     });
 
+    // Only Teacher Consultant
+    Route::group(['middleware' => 'checkTeacher'], function () {
+        Route::get('/all/users', 'userController@allUser')->name('allUser');
+        Route::get('/all/users/students', 'userController@allUserStudent')->name('allUserStudent');
+    });
+
     //Image Change
     Route::post('/home/imageChange', 'userController@imgChange')->name('imgChange');
     Route::post('/users/edited/', 'userController@edited')->name('users-edited');
@@ -83,15 +90,12 @@ Route::group(['middleware' => 'checkApproval'], function () {
     //Password Update
     Route::get('/user/password/', 'userController@PasswordUpdate')->name('PasswordUpdate');
     Route::post('/user/password/update', 'userController@PasswordUpdateCheck')->name('PasswordUpdateCheck');
-    Route::get('/all/users', 'userController@allUser')->name('allUser');
 });
 
 Route::get('/postView/{id}', 'userController@postView')->name('postView');
 Route::get('/post/myfavaourite', 'userController@FavouritePosts')->name('myFavPost');
 Route::get('/post/Category/{id}', 'userController@CategoryPosts')->name('CategoryPosts');
-Route::get('/all/users', 'userController@allUser')->name('allUser');
 
-Route::get('/all/users/students', 'userController@allUserStudent')->name('allUserStudent');
 Route::get('/all/users/teacher', 'userController@allUserTeacher')->name('allUserTeacher');
 Route::get('/all/users/alumni', 'userController@allUserAlumni')->name('allUserAlumni');
 

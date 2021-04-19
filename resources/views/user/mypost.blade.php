@@ -86,7 +86,11 @@
                                Cat: {{ $category[$post->category -1]->name }}
                             @endif
                             <br>
+                        @auth
+                            @if(Auth::user()->role!=0 && Auth::user()->role!=2)
                             <a href="{{ route('postDelete',['id'=>$post->id]) }}" class="btn btn-danger btn-sm mr-4">Delete</a>
+                            @endif
+                        @endauth                            
                             <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
                         </div>
                     </div>
