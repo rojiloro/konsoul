@@ -109,76 +109,63 @@
 
         <div class="container">
             <div class="row justify-content-center">
-                {{-- Jika belum login --}}
-                @guest
-                <div class="jumbotron">
-                    <h1 class="display-3">Malu ketemu Guru BP</h1>
-                    <p class="lead">Lewat Konsoulin aja deh, keluh kesah tersampaikan tanpa pertemuan</p>
-                    <hr class="my-2">
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="{{ route('login')}}" role="button">Mau Konsoulin</a>
-                    </p>
-                </div>
-                {{-- Jika user sedang login --}}
-                @else
-                    <div class="col-md-9">
-                        @if(count($posts)>0)
-                            <div class="row justify-content-center mt-5">
-                                <div class="col-md-12">
-                                    <h2>All Posts:</h2>
-                                    <hr>
-                                </div>
-                                @foreach($posts as $post)
-                                    <div class="col-md-12 mt-3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <b><a href="{{ route('postView',['id'=>$post->id]) }}">{{ $post->title }}</a></b> 
-                                                
-                                            </div>
-                                            <div class="card-body">{!! Str::limit($post->content, 200) !!}</div>
-                                            <div class="card-footer">
-                                                @if($post->category==0)
-                                                Cat: Undefined
-                                                @else
-                                                Category: {{ $category[$post->category -1]->name }}
-                                                @endif
-                                                | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Read more...</b></a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                @endforeach
+                <div class="col-md-9">
+                    @if(count($posts)>0)
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-12">
+                                <h2>All Posts:</h2>
+                                <hr>
                             </div>
-                            <div class="d-flex justify-content-center mt-4">
-                                {!! $posts->links() !!}
-                            </div>
-                        @endif
-                    </div>
-
-                    <div class="col-md-3">
-                        @if(count($category)>0)
-                            <div class="row justify-content-center mt-5">
-                                <div class="col-md-12">
-                                    <h2>All Categories</h2>
-                                    <hr>
-                                </div>
-
+                            @foreach($posts as $post)
                                 <div class="col-md-12 mt-3">
-                                @foreach($category as $cat)
-                                        <ul class="list-group">
-                                            <a href="{{ route('CategoryPosts',['id'=>$cat->id]) }}"
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                {{ $cat->name }}
-                                                <span class="badge badge-secondary badge-pill">{{ $cat->total }}</span>
-                                            </a>
-                                        </ul>
-                                @endforeach
-                                </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <b><a href="{{ route('postView',['id'=>$post->id]) }}">{{ $post->title }}</a></b> 
+                                            
+                                        </div>
+                                        <div class="card-body">{!! Str::limit($post->content, 200) !!}</div>
+                                        <div class="card-footer">
+                                            @if($post->category==0)
+                                            Cat: Undefined
+                                            @else
+                                            Category: 
+                                            @endif
+                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Read more...</b></a>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            {!! $posts->links() !!}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="col-md-3">
+                    @if(count($category)>0)
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-12">
+                                <h2>All Categories</h2>
+                                <hr>
                             </div>
-                        @endif
-                    </div>
-                @endguest    
+
+                            <div class="col-md-12 mt-3">
+                            @foreach($category as $cat)
+                                    <ul class="list-group">
+                                        <a href="{{ route('CategoryPosts',['id'=>$cat->id]) }}"
+                                            class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $cat->name }}
+                                            <span class="badge badge-secondary badge-pill">{{ $cat->total }}</span>
+                                        </a>
+                                    </ul>
+                            @endforeach
+                            </div>
+
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
