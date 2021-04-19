@@ -31,17 +31,17 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $user=user::find($id);
-        $post=post::all();
+        $post=post::all()->count();
 
-        $teacher=user::where('role', 1)->get();
-        $student=user::where('role', 2)->get();
-        $alumni=user::where('role', 3)->get();
-        $category=category::all();
-
-        $new_user=user::where('state', 0)->get();
+        $teacher=user::where('role', 1)->get()->count();
+        $student=user::where('role', 2)->get()->count();
+        $alumni=user::where('role', 3)->get()->count();
+        $category=category::all()->count();
+        $comment=comment::all()->count();
+        $new_user=user::where('state', 0)->get()->count();
 
         if($user->role==0){
-            return view('admin', compact('user','new_user','teacher','student','alumni','category','post'));
+            return view('admin', compact('user','new_user','teacher','student','alumni','category','comment','post'));
         }else{
             $profileImg=profileImg::where("user_id",$id)->first();
             $pp_img="/img/avatar_default.png";

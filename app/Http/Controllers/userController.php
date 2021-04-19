@@ -149,7 +149,8 @@ class userController extends Controller
 
 
         $comments = Comment::leftJoin('users', 'comments.User_id', '=', 'users.id')
-        ->select('users.id as user_id','users.name','comments.id','comments.comment')->get();
+        ->select('users.id as user_id','users.name','comments.id','comments.comment')
+        ->where('post_id',$id)->get();
 
         $pp_img=profileImg::where("user_id",$userid)->first();
         if($pp_img==null){
