@@ -9,6 +9,7 @@ use App\profileImg;
 use App\AlumniWork;
 use App\category;
 use App\Post;
+use App\Comment;
 
 class HomeController extends Controller
 {
@@ -33,15 +34,16 @@ class HomeController extends Controller
         $user=user::find($id);
         $post=post::all()->count();
 
-        $teacher=user::where('role', 1)->get()->count();
-        $student=user::where('role', 2)->get()->count();
+        $student=user::where('role', 1)->get()->count();
+        $teacher=user::where('role', 2)->get()->count();
         $alumni=user::where('role', 3)->get()->count();
         $category=category::all()->count();
-        $comment=comment::all()->count();
+        $comment=Comment::all()->count();
+
         $new_user=user::where('state', 0)->get()->count();
 
         if($user->role==0){
-            return view('admin', compact('user','new_user','teacher','student','alumni','category','comment','post'));
+            return view('admin', compact('user','new_user','teacher','student','alumni','category','post','comment'));
         }else{
             $profileImg=profileImg::where("user_id",$id)->first();
             $pp_img="/img/avatar_default.png";

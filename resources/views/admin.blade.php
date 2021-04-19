@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">New Users</div>
                     <div class="card-body">
-                        <h2>{{($new_user) }}</h2>
+                        <h2>{{ $new_user }}</h2>
                     </div>
                 </div>
             </a>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">Alumni</div>
                     <div class="card-body">
-                        <h2>{{ count($alumni) }}</h2>
+                        <h2>{{ $alumni }}</h2>
                     </div>
                 </div>
             </a>
@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-header">Teachers</div>
                     <div class="card-body">
-                        <h2>{{ count($teacher) }}</h2>
+                        <h2>{{ $teacher }}</h2>
                     </div>
                 </div>
             </a>
@@ -45,7 +45,7 @@
                 <div class="card" >
                     <div class="card-header">Students</div>
                     <div class="card-body">
-                        <h2>{{ count($student) }}</h2>
+                        <h2>{{ $student }}</h2>
                     </div>
                 </div>
             </a>
@@ -56,7 +56,7 @@
                 <div class="card">
                     <div class="card-header">Posts</div>
                     <div class="card-body">
-                        <h2>{{ count($post) }}</h2>
+                        <h2>{{ $post }}</h2>
                     </div>
                 </div>
             </a>
@@ -67,18 +67,18 @@
                 <div class="card">
                     <div class="card-header">Category</div>
                     <div class="card-body">
-                        <h2>{{ count($category) }}</h2>
+                        <h2>{{ $category }}</h2>
                     </div>
                 </div>
             </a>
         </div>
 
         <div class="col-md-3  mt-1">
-            <a href="{{ route('admin-users-comment') }}" class="card-link">
+            <a href="{{ route('admin-comment') }}" class="card-link">
                 <div class="card">
                     <div class="card-header">Comments</div>
                     <div class="card-body">
-                        <h2>0</h2>
+                        <h2>{{ $comment }}</h2>
                     </div>
                 </div>
             </a>
