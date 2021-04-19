@@ -132,7 +132,7 @@
                                     <div class="col-md-12 mt-3">
                                         <div class="card">
                                             <div class="card-header">
-                                                <b>{{ $post->title }}</b> 
+                                                <b><a href="{{ route('postView',['id'=>$post->id]) }}">{{ $post->title }}</a></b> 
                                                 
                                             </div>
                                             <div class="card-body">{!! Str::limit($post->content, 200) !!}</div>
@@ -140,9 +140,9 @@
                                                 @if($post->category==0)
                                                 Cat: Undefined
                                                 @else
-                                                Cat: {{ $category[$post->category -1]->name }}
+                                                Category: {{ $category[$post->category -1]->name }}
                                                 @endif
-                                                | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
+                                                | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Read more...</b></a>
                                             </div>
 
                                         </div>
@@ -163,19 +163,18 @@
                                     <hr>
                                 </div>
 
+                                <div class="col-md-12 mt-3">
                                 @foreach($category as $cat)
-                                    <div class="col-md-12 mt-3">
-                                        <div class="card">
-                                            <div class="card-body">{{ $cat->name }}</div>
-                                            <div class="card-footer"><a href={{ route('CategoryPosts',['id'=>$cat->id]) }}><b>View Category Post...</b></a></div>
-                                        </div>
-                                    </div>
+                                        <ul class="list-group">
+                                            <a href="{{ route('CategoryPosts',['id'=>$cat->id]) }}"
+                                                class="list-group-item d-flex justify-content-between align-items-center">
+                                                {{ $cat->name }}
+                                                <span class="badge badge-secondary badge-pill">{{ $cat->total }}</span>
+                                            </a>
+                                        </ul>
                                 @endforeach
+                                </div>
 
-                            </div>
-
-                            <div class="d-flex justify-content-center mt-4">
-                                {!! $category->links() !!}
                             </div>
                         @endif
                     </div>
