@@ -9,7 +9,6 @@ use App\User;
 use App\Post;
 use App\Like;
 use App\category;
-use App\AlumniWork;
 use App\Comment;
 use App\FavouritePost;
 use Brian2694\Toastr\Facades\Toastr;
@@ -62,48 +61,11 @@ class userController extends Controller
         return redirect()->route('home');
     }
 
-    public function alumniWorkCreate(Request $req){
-        $id = Auth::user()->id;
-        $work = AlumniWork::create([
-            'user_id' =>  $id,
-            'post' => $req->post,
-            'place' => $req->place,
-            'city' => $req->city,
-            'description' => $req->description,
-            'start_at' => $req->start_at,
-            'state' => $req->state,
-            'end_at' => $req->end_at,
-        ]);
-
-        Toastr::success('Work added Successfully', 'Added', ["positionClass" => "toast-bottom-right"]);
+    Toastr::success('Work added Successfully', 'Added', ["positionClass" => "toast-bottom-right"]);
         return redirect()->route('home');
     }
 
-    public function workUpdate($workId){
-        $work = AlumniWork::find($workId);
-        return view("user.editwork", compact('work'));
-    }
-
-    public function workUpdated(Request $req,$workId){
-        $work = AlumniWork::find($workId);
-        $work->post=$req->post;
-        $work->place=$req->place;
-        $work->city=$req->city;
-        $work->description=$req->description;
-        $work->start_at=$req->start_at;
-        $work->state=$req->state;
-        $work->end_at=$req->end_at;
-        $work->save();
-        Toastr::success('Work edited Successfully', 'Edited', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->route('home');
-    }
-
-    public function workDelete($workId){
-        $work = AlumniWork::find($workId);
-        $work->delete();
-        Toastr::success('Work deleted Successfully', 'Deleted', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->route('home');
-    }
+     
 
     public function mypost(){
         $id = Auth::user()->id;
@@ -358,13 +320,6 @@ class userController extends Controller
         return view("allusers",compact('users','search'));
     }
 
-    public function allUserAlumni(){
-        $search=null;
-        $profileImg;
-        $users = User::leftJoin('profile_imgs', 'users.id', '=', 'profile_imgs.user_id')->where('role',3)
-        ->select('users.id','users.name','users.role','profile_imgs.path')->paginate(10);
-        return view("allusers",compact('users','search'));
-    }
 
     public function userProfileView($id){
         $user=User::find($id);
@@ -374,8 +329,6 @@ class userController extends Controller
         }else{
             $pp_img="/img/profile-img/".$pp_img->path;
         }
-        $work = AlumniWork::where('user_id',$id)->where('state',1)->get();
-        $all_work = AlumniWork::where('user_id',$id)->get();
         $posts=Post::where("user_id",$id)->paginate(10);
         $category=Category::all();
         return view('userProfileView',compact('user','pp_img','work','all_work','posts','category'));

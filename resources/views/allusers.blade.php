@@ -54,8 +54,6 @@
                                         <h5>Student</h5>
                                         @elseif($user->role==2)
                                         <h5>Teacher</h5>
-                                        @elseif($user->role==3)
-                                        <h5>Alumni</h5>
                                         @endif
                                     </div>
                                 </div>
@@ -78,8 +76,6 @@
             <a href="{{ route("allUserStudent") }}">Students</a>
             <hr>
             <a href="{{ route("allUserTeacher") }}">Teacher</a>
-            <hr>
-            <a href="{{ route("allUserAlumni") }}">Alumni</a>
         </div>
     </div>
 </div>

@@ -33,7 +33,6 @@
                                 <select class="form-control" id="role" name="role">
                                     <option value="1">Student</option>
                                     <option value="2">Teacher</option>
-                                    <option value="3">Alumni</option>
                                 </select>
 
                                 @error('role')

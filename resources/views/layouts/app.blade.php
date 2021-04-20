@@ -42,7 +42,7 @@
                         @if(Auth::user()->role==0 || Auth::user()->role==1)
                      
                         <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('mypost') }}>My Posts</a>
+                            <a class="dropdown-item" href={{ route('mypost') }}>Buat Postingan</a>
                         </li>
 
                         <li class="nav-item">

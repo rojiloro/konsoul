@@ -27,7 +27,6 @@ Route::group(['middleware' => 'checkApproval'], function () {
     Route::group(['middleware' => 'checkAdmin'], function () {
         Route::get('admin/users', 'AdminController@users')->name('admin-users');
 
-        Route::get('admin/users/alumni', 'AdminController@usersAlumni')->name('admin-users-alumni');
         Route::get('admin/users/teacher', 'AdminController@usersTeacher')->name('admin-users-teacher');
         Route::get('admin/users/student', 'AdminController@usersStudent')->name('admin-users-student');
 
