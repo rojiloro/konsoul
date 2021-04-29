@@ -28,8 +28,6 @@
                                     Student
                                 @elseif($users->role == 2 )
                                     Teacher
-                                @elseif($users->role == 3 )
-                                    Alumni
                                 @endif
                             </td>
                             <td>
@@ -86,8 +84,6 @@
                                     Student
                                 @elseif($users->role == 2 )
                                     Teacher
-                                @elseif($users->role == 3 )
-                                    Alumni
                                 @endif
                             </td>
                             <td>

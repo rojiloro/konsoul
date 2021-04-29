@@ -39,15 +39,17 @@ class HomeController extends Controller
         $comment=Comment::all()->count();
 
         $new_user=user::where('state', 0)->get()->count();
-
+    
         if($user->role==0){
             return view('admin', compact('user','new_user','teacher','student','category','post','comment'));
         }else{
             $profileImg=profileImg::where("user_id",$id)->first();
             $pp_img="/img/avatar_default.png";
+        }
             if(!$profileImg==null){
                 $pp_img="/img/profile-img/".$profileImg->path;
             }
+        return view('users' ,compact('pp_img', 'user'));
     }
 
     public function waitingForApproval(){

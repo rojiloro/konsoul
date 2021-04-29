@@ -18,8 +18,6 @@
                                 <h5>Student</h5>
                             @elseif($user->role==2)
                                 <h5>Teacher</h5>
-                            @elseif($user->role==3)
-                                <h5>Alumni</h5>
                             @endif
                         </div>
                     </div>
@@ -35,41 +33,6 @@
                         <div class="col-3 col-md-4"><b><h5>Home Town</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->home_town }}</h5></div>
                     </div>
                 </div>
-
-                @if(count($work)>0)
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12 mt-4"><h2>Work Info:</h2><hr></div>
-                        @foreach($work as $w)
-                        <div class="col-md-12 mt-3">
-                            <b><h5><b>{{ $w->post }}</b></h5></b> 
-                            <h5><i>at {{ $w->place }}</i></h5>
-                            <h6>{{ $w->start_at }} to Present</h6>
-                            <h6>{{ $w->city }}</h6>
-                        </div> 
-                        @endforeach
-                    </div>
-                </div>
-                @endif
-
-                @if(count($all_work)>0)
-                <div class="col-md-6 mt-5" >
-                    <div class="row">
-                        <div class="col-md-12 mt-4"><h2>Experience: </h2><hr></div>
-                        <ul class="timeline">
-                        @foreach($all_work as $w)
-                            <li class="timeline">
-                                <b><h5><b>{{ $w->post }}</b></h5></b> 
-                                <h5><i>at {{ $w->place }}</i></h5>
-                                <h6>{{ $w->start_at }} @if($w->state==1) to Present @else to {{ $w->end_at }} @endif</h6>
-                                <h6>{{ $w->city }}</h6> 
-                            </li>
-                        @endforeach
-                        </ul>
-                    </div>
-                </div>
-                @endif
-
                 <div class="col-md-9">
                     @if(count($posts)>0)
                         <div class="row justify-content-center mt-5">

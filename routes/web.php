@@ -65,13 +65,6 @@ Route::group(['middleware' => 'checkApproval'], function () {
     Route::post('/home/imageChange', 'userController@imgChange')->name('imgChange');
     Route::post('/users/edited/', 'userController@edited')->name('users-edited');
 
-    Route::post('/users/alumni/work-update', 'userController@alumniWorkCreate')->name('alumniWorkCreate');
-
-    Route::group(['middleware' => 'AlumniWork'], function () {
-        Route::get('/users/alumni/work-update/{workId}', 'userController@workUpdate')->name('alumni-work-update');
-        Route::post('/users/alumni/work-updated/{workId}', 'userController@workUpdated')->name('alumni-work-updated');
-        Route::get('/users/alumni/work-delete/{workId}', 'userController@workDelete')->name('alumni-work-delete');
-    });
 
     Route::get('/users/post', 'userController@myPost')->name('mypost')->middleware('userCheck');
     Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
@@ -96,7 +89,6 @@ Route::get('/post/myfavaourite', 'userController@FavouritePosts')->name('myFavPo
 Route::get('/post/Category/{id}', 'userController@CategoryPosts')->name('CategoryPosts');
 
 Route::get('/all/users/teacher', 'userController@allUserTeacher')->name('allUserTeacher');
-Route::get('/all/users/alumni', 'userController@allUserAlumni')->name('allUserAlumni');
 
 Route::get('/users/profile/{id}', 'userController@userProfileView')->name('userProfileView');
 

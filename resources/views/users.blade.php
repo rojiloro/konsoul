@@ -46,7 +46,6 @@
                       <select class="form-control" id="role" name="role">
                         <option value="1" @if($user->role==1)selected @endif >Student</option>
                         <option value="2" @if($user->role==2)selected @endif>Teacher</option>
-                        <option value="3" @if($user->role==3)selected @endif >Alumni</option>
                     </select>
                     </div>
                 </div>
@@ -93,112 +92,8 @@
                 </div>
             </form>
         </div>
-        @if($user->role==3)
-        <div class="col-md-6">
-            <h2>Add New Work</h2>
-            <hr>
-            <form method="POST" action={{ route('alumniWorkCreate') }}>
-                @csrf
-                <div class="form-group row">
-                  <label for="name" class="col-sm-2 col-form-label">Post </label>
-                  <div class="col-sm-10">
-                    <input type="text"  class="form-control" name="post" placeholder="Director" required>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Working At</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="place" placeholder="My Company" required>
-                    </div>
-                </div>
-    
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">City</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="city" placeholder="City" >
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
-                    <div class="col-sm-10">
-                      <textarea name="description" rows="4" maxlength="255" style="width:100%;resize: none"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Start at</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" name="start_at" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label"> </label>
-                    <div class="col-sm-auto">
-                        <label for="male">Currently working</label>
-                        <input type="radio" id="state" name="state" onclick="workingAt(1)" value="1" required>
-                    </div>
-                    <div class="col-sm-auto">
-                        <label for="male">Passed</label>
-                        <input type="radio" id="state" name="state" onclick="workingAt(0)" value="0">
-                    </div>
-                </div>
-
-                <div class="form-group row" id="endatdiv">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">End at</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" name="end_at"  >
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-10 offset-sm-2" >
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </form>
-
-            <script>
-                function workingAt(i){
-                    if(i==1){
-                        $('#endatdiv').css({"display":"none"})
-                    }else{
-                        $('#endatdiv').css({"display":"flex"})
-                    }
-                }
-            </script>
-        </div>
-        @endif
+       
     </div>
-
-    @if($user->role==3 && count($works)>0)
-    <div class="row mt-5">
-        
-        <div class="col-md-8">
-            <h2>Work Info:</h2>
-            <hr>
-            <ul class="timeline">
-                @foreach ($works as $work)
-                    <li>
-                        <h3>{{ $work->post }}</h3>
-                        <h5>{{ $work->place }}</h5>
-                        <p>{{ $work->description }}</p>
-                        <h6>{{ $work->city }}</h6>
-                        <p>{{ $work->start_at }} @if($work->state==0) to {{ $work->end_at }} @endif</p> 
-                        <div class="btn-group">
-                            <a href="{{ route('alumni-work-update', ['workId'=>$work->id]) }}" class="btn-sm btn-primary">Edit</a>
-                            <a href="{{ route('alumni-work-delete', ['workId'=>$work->id]) }}" class="btn-sm btn-danger">Delete</a>
-                        </div>
-                        <hr>
-                    </li>
-                @endforeach
-            </ul>
-            
-        </div>
-    </div>
-    @endif
 
     
 </div>

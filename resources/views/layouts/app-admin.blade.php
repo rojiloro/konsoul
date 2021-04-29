@@ -94,8 +94,6 @@
         <hr>
         <a href="{{ route('admin-users') }}">New Users</a>
         <hr>
-        <a href="{{ route('admin-users-alumni') }}">Alumni</a>
-        <hr>
         <a href="{{ route('admin-users-teacher') }}">Teachers</a>
         <hr>
         <a href="{{ route('admin-users-student') }}">Students</a>

@@ -27,12 +27,6 @@ class AdminController extends Controller
         return view('admin.users', compact('new_users', 'app_users'));
     }
 
-    public function usersAlumni(){
-
-        $sort_users=user::where('state',1)->where('role', 3)->paginate(10);
-        $type="Alumni";
-        return view('admin.sortUser', compact('sort_users','type'));
-    }
 
     public function usersTeacher(){
         $sort_users=user::where('state',1)->where('role', 2)->paginate(10);

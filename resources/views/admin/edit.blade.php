@@ -21,7 +21,6 @@
                       <select class="form-control" id="role" name="role">
                         <option value="1" @if($user->role==1)selected @endif >Student</option>
                         <option value="2" @if($user->role==2)selected @endif>Teacher</option>
-                        <option value="3" @if($user->role==3)selected @endif >Alumni</option>
                     </select>
                     </div>
                 </div>

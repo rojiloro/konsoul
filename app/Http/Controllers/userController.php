@@ -61,11 +61,7 @@ class userController extends Controller
         return redirect()->route('home');
     }
 
-    Toastr::success('Work added Successfully', 'Added', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->route('home');
-    }
-
-     
+   
 
     public function mypost(){
         $id = Auth::user()->id;
@@ -84,7 +80,7 @@ class userController extends Controller
         $id = Auth::user()->id;
         $flag=0;
         $badword = array("idiot", "stupid", "badword", "bangsat", "keparat", "sialan");
-
+        
         foreach ($badword  as $w) {
             if(strpos($req["wysiwyg-editor"], $w)){
                 $flag=1;
