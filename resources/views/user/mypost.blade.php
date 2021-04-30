@@ -64,7 +64,7 @@
         @if(count($posts)>0)
         <div class="row justify-content-center mt-5">
             <div class="col-md-12">
-                <h2>Semua Post Saya:</h2>
+                <h2>Semua Postingan:</h2>
                 <hr>
             </div>
             @foreach($posts as $post)

@@ -28,7 +28,7 @@
                                Cat: {{ $category[$post->category -1]->name }}
                             @endif
                             <br>
-                            <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
+                            <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Lihat Postingan...</b></a>
                         </div>
                     </div>
                 </div>

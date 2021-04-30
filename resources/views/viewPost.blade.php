@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <h2><b>{{ $post->title }}</b></h2>
-            <b>Category:</b> @if($category!=null) {{ $category->name }} @else Undefine Category @endif
+            <b>Kategori:</b> @if($category!=null) {{ $category->name }} @else Undefine Category @endif
             <br><img src="{{ URL::asset( $pp_img ) }}" class="rounded-circle img-fluid" height="30px" width="30px"  alt="Cinque Terre"> <a href={{route('userProfileView',['id'=>$user->id])}}>{{ $user->name }}</a>
             <hr>
         </div>
@@ -18,16 +18,16 @@
             {!! $post->content !!}
             <hr>
             <button class="btn btn-primary btn-sm" onclick="likeUnlike()"><span id="count">0</span> <span id="like">Suka</span></button>
-            @if($own==0)
+            <!-- @if($own==0)
                 @if($fav==0)
                 <a href="{{ route("AddFavourite",["id"=>$post->id]) }}" class="btn btn-success btn-sm ml-2">Add as Favourite</a>
                 @else
                 <a href="{{ route("RemoveFavourite",["id"=>$post->id]) }}" class="btn btn-danger btn-sm ml-2">Remove from Favourite</a>
                 @endif
-            @endif
+            @endif -->
         </div>
 
-        <!-- <div class="col-md-12 mt-5">
+        <div class="col-md-12 mt-5">
             <form method="post" action="{{ route("Comment",["id"=>$post->id]) }}">
                 @csrf
                 <div class="form-group row">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10 " >
-                        <button type="submit" class="btn btn-primary">Comment</button>
+                        <button type="submit" class="btn btn-primary">Balas</button>
                     </div>
                 </div>
             </form>
@@ -58,11 +58,11 @@
                 @auth
                     @if(Auth::user()->id == $post->user_id)
                         <div class="col-md-12">
-                            <a href="{{ route("CommentDelete",["id"=>$comment->id,"postId"=>$post->id]) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ route("CommentDelete",["id"=>$comment->id,"postId"=>$post->id]) }}" class="btn btn-danger btn-sm">Hapus</a>
                         </div>
                     @elseif($comment->user_id==Auth::user()->id)
                     <div class="col-md-12">
-                        <a href="{{ route("CommentDelete",["id"=>$comment->id,"postId"=>$post->id]) }}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{{ route("CommentDelete",["id"=>$comment->id,"postId"=>$post->id]) }}" class="btn btn-danger btn-sm">Hapus</a>
                     </div>
                     @endif
                 @endauth
@@ -73,10 +73,10 @@
         @endforeach
         @else
         <div class="col-md-12">
-            <p>No comment for this post</p>
+            <p>Tidak ada komentar di postingan ini</p>
         </div>
         @endif
-    </div> -->
+    </div>
 
 
     <script>

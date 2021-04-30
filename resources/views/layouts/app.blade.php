@@ -45,19 +45,19 @@
                             <a class="dropdown-item" href={{ route('mypost') }}>Buat Postingan</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="dropdown-item" href={{ route('myFavPost') }}>Favourite Posts</a>
                         </li>
-                        
+                         -->
                         @elseif(Auth::user()->role==2)
                         
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('mypost') }}>Konsulan Murid</a> 
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="dropdown-item" href={{ route('myFavPost') }}>Favorit Konsul</a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item">
                             <a class="dropdown-item" href={{ route('allUser') }}>Data Murid</a>
