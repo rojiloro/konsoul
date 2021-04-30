@@ -42,11 +42,11 @@
                         
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Masuk') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Daftar') }}</a>
                                 </li>
                             @endif
                         @else
@@ -80,11 +80,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="jumbotron">
-                    <h1 class="display-3">Malu ketemu Guru BP</h1>
-                    <p class="lead">Coba Konsoulin aja deh, keluh kesah tersampaikan tanpa pertemuan</p>
+                    <h1 class="display-3">Malu ketemu Guru BP?</h1>
+                    <p class="lead">Konsul aja yukk, keluh kesah tersampaikan tanpa pertemuan</p>
                     <hr class="my-2">
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="{{ route('login')}}" role="button">Mau Konsoulin</a>
+                        <a class="btn btn-primary btn-lg" href="{{ route('login')}}" role="button">Mulai aja</a>
                     </p>
                 </div>  
             </div>

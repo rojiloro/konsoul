@@ -15,9 +15,9 @@
                         </div>
                         <div class="col-md-12">
                             @if($user->role==1)
-                                <h5>Student</h5>
+                                <h5>Siswa</h5>
                             @elseif($user->role==2)
-                                <h5>Teacher</h5>
+                                <h5>Guru</h5>
                             @endif
                         </div>
                     </div>
@@ -25,19 +25,18 @@
                 
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12 mt-4"><h2>Profile Info:</h2><hr></div>
-                        <div class="col-3 col-md-4"><b><h5>Name:</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->name }}</h5></div>
+                        <div class="col-md-12 mt-4"><h2>Info Profil:</h2><hr></div>
+                        <div class="col-3 col-md-4"><b><h5>Nama:</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->name }}</h5></div>
                         <div class="col-3 col-md-4"><b><h5>Email:</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->email }}</h5></div>
-                        <div class="col-3 col-md-4"><b><h5>Phone:</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->phone }}</h5></div>
-                        <div class="col-3 col-md-4"><b><h5>Current City</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->current_city }}</h5></div>
-                        <div class="col-3 col-md-4"><b><h5>Home Town</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->home_town }}</h5></div>
+                        <div class="col-3 col-md-4"><b><h5>Kota Sekarang</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->current_city }}</h5></div>
+                        <div class="col-3 col-md-4"><b><h5>Asal Kota</h5></b> </div> <div class="col-9 col-md-8"><h5>{{ $user->home_town }}</h5></div>
                     </div>
                 </div>
                 <div class="col-md-9">
                     @if(count($posts)>0)
                         <div class="row justify-content-center mt-5">
                             <div class="col-md-12">
-                                <h2>All Posts:</h2>
+                                <h2>Semua Postingan:</h2>
                                 <hr>
                             </div>
                             @foreach($posts as $post)
@@ -50,11 +49,11 @@
                                         <div class="card-body">{{ Str::limit($post->content, 200) }}</div>
                                         <div class="card-footer">
                                             @if($post->category==0)
-                                            Cat: Undefined
+                                            Kat: Undefined
                                             @else
-                                            Cat: {{ $category[$post->category -1]->name }}
+                                            Kategori: {{ $category[$post->category -1]->name }}
                                             @endif
-                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
+                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Lihat Postingan...</b></a>
                                         </div>
 
                                     </div>

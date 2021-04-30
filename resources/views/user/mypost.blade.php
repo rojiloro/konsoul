@@ -12,20 +12,20 @@
             <form method="post" action={{ route('newPost') }} enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Title </label>
+                    <label for="name" class="col-sm-2 col-form-label">Judul </label>
                     <div class="col-sm-10">
-                      <input type="text"  class="form-control" name="title" min="2" maxlength="50" placeholder="My awesome post" required>
+                      <input type="text"  class="form-control" name="title" min="2" maxlength="50" placeholder="Masukan Judul" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Content </label>
+                    <label for="name" class="col-sm-2 col-form-label">Isi </label>
                     <div class="col-sm-10">
                         <textarea class="ckeditor form-control" minlength="10" maxlength="4000" name="wysiwyg-editor"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Category </label>
+                    <label for="name" class="col-sm-2 col-form-label">Kategori </label>
                     <div class="col-sm-10">
                         <select class="form-control" id="category" name="category">
                             <option value="0">Undefine Category</option>
@@ -39,7 +39,7 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-2">
                         <button type="submit" class="btn btn-primary">
-                            Create Post
+                            Buat Postingan
                         </button>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
         @if(count($posts)>0)
         <div class="row justify-content-center mt-5">
             <div class="col-md-12">
-                <h2>My All Post:</h2>
+                <h2>Semua Post Saya:</h2>
                 <hr>
             </div>
             @foreach($posts as $post)
@@ -73,9 +73,9 @@
                         <div class="card-header">
                             <b>{{ $post->title }}</b> 
                             @if($post->state==0) 
-                            <span class="badge badge-secondary">Not Approve</span>
+                            <span class="badge badge-secondary">Belum disetujui</span>
                             @else 
-                            <span class="badge badge-primary">Approved</span>
+                            <span class="badge badge-primary">Disetujui</span>
                             @endif
                         </div>
                         <div class="card-body">{!! Str::limit($post->content, 300) !!}</div>
@@ -88,10 +88,10 @@
                             <br>
                         @auth
                             @if(Auth::user()->role!=0 && Auth::user()->role!=2)
-                            <a href="{{ route('postDelete',['id'=>$post->id]) }}" class="btn btn-danger btn-sm mr-4">Delete</a>
+                            <a href="{{ route('postDelete',['id'=>$post->id]) }}" class="btn btn-danger btn-sm mr-4">Hapus</a>
                             @endif
                         @endauth                            
-                            <a href="{{ route('postView',['id'=>$post->id]) }}"><b>View Full Post...</b></a>
+                            <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Lihat Postingan...</b></a>
                         </div>
                     </div>
                 </div>

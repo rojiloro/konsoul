@@ -55,7 +55,7 @@
                         
                         @elseif(Auth::user()->role==1)                     
                         <li class="nav-item">
-                            <a class="dropdown-item" href={{ route('mypost') }}>My Posts</a>
+                            <a class="dropdown-item" href={{ route('mypost') }}>Postingan Saya</a>
                         </li>
 
                         <li class="nav-item">
@@ -88,12 +88,12 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('home') }}">Setting</a>
-                                    <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Change Password</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">Pengaturan</a>
+                                    <a class="dropdown-item" href="{{ route('PasswordUpdate') }}">Ganti Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Keluar') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -113,7 +113,7 @@
                     @if(count($posts)>0)
                         <div class="row justify-content-center mt-5">
                             <div class="col-md-12">
-                                <h2>All Posts:</h2>
+                                <h2>Semua Postingan:</h2>
                                 <hr>
                             </div>
                             @foreach($posts as $post)
@@ -135,9 +135,9 @@
                                             @if($post->category==0)
                                             Cat: Undefined
                                             @else
-                                            Category: 
+                                            Kategori: 
                                             @endif
-                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Read more...</b></a>
+                                            | <a href="{{ route('postView',['id'=>$post->id]) }}"><b>Lihat Postingan...</b></a>
                                         </div>
 
                                     </div>
@@ -154,7 +154,7 @@
                     @if(count($category)>0)
                         <div class="row justify-content-center mt-5">
                             <div class="col-md-12">
-                                <h2>All Categories</h2>
+                                <h2>Semua Postingan</h2>
                                 <hr>
                             </div>
 

@@ -55,7 +55,6 @@ class userController extends Controller
         $user->role=$req->role;
         $user->home_town=$req->home_town;
         $user->current_city=$req->current_city;
-        $user->phone=$req->phone;
         $user->save();
         Toastr::success('User Edited Successfully', 'Edited', ["positionClass" => "toast-bottom-right"]);
         return redirect()->route('home');
@@ -327,7 +326,7 @@ class userController extends Controller
         }
         $posts=Post::where("user_id",$id)->paginate(10);
         $category=Category::all();
-        return view('userProfileView',compact('user','pp_img','work','all_work','posts','category'));
+        return view('userProfileView',compact('user','pp_img','posts','category'));
     }
 
    

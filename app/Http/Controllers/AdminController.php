@@ -66,7 +66,6 @@ class AdminController extends Controller
         $user->role=$req->role;
         $user->home_town=$req->home_town;
         $user->current_city=$req->current_city;
-        $user->phone=$req->phone;
         $user->save();
         Toastr::success('User Edited Successfully', 'Edited', ["positionClass" => "toast-bottom-right"]);
         return redirect()->route('admin-users-edit',['id'=>$user->id]);

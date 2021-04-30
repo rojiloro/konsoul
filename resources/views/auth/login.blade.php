@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="logreg-forms" id="customForm">
                 <form class="form-signin" method="POST" action="{{ route('login') }}">
-                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Masuk</h1>
                     @csrf
                     <div class="input-group">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
@@ -30,17 +30,17 @@
                     </div>
                     <input class="form-check-input" type="checkbox" name="remember" checked hidden>
                     <div class="input-group">
-                      <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+                      <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i> Masuk</button>
                     </div>
             
                     <a href="#" id="forgot_pswd">Forgot password?</a>
                     <hr>
                     <!-- <p>Don't have an account!</p>  -->
-                    <button class="btn btn-primary btn-block" onclick="window.location.href='#signup'" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+                    <a class="btn btn-primary btn-block" href="{{ route('register') }}" type="button" id=""><i class="fas fa-user-plus"></i> Daftar</a>
                     </form>
             
                     <form method="POST" action="{{ route('password.email') }}" class="form-reset" id="signup">
-                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Forget Passowrd</h1>
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Lupa Passowrd</h1>
                         @csrf
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
     
@@ -67,8 +67,8 @@
                         </div>
                         <div class="input-group mb-1">
                             <select class="form-control" id="role" name="role">
-                                <option value="1">Student</option>
-                                <option value="2">Teacher</option>
+                                <option value="1">Siswa</option>
+                                <option value="2">Guru</option>
                             </select>
     
                             @error('role')

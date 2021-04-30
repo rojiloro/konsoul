@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h2>Update Password: </h2>
+            <h2>Ganti Password: </h2>
             <hr>
         </div>
 
@@ -17,17 +17,17 @@
             <form method="POST" action={{ route('PasswordUpdateCheck') }}>
                 @csrf
                 <div class="form-group row">
-                  <label for="name" class="col-sm-3 col-form-label">Old Password</label>
+                  <label for="name" class="col-sm-3 col-form-label">Password Lama</label>
                   <div class="col-sm-9">
-                    <input type="password"  class="form-control" minlength="8" maxlength="20" name="password" placeholder="Old Password" required>
+                    <input type="password"  class="form-control" minlength="8" maxlength="20" name="password" placeholder="Password Lama" required>
                   </div>
                 </div>
 
                 
                 <div class="form-group row">
-                    <label for="name" class="col-sm-3 col-form-label">New Password</label>
+                    <label for="name" class="col-sm-3 col-form-label">Password Baru</label>
                     <div class="col-sm-9">
-                      <input type="password"  class="form-control" minlength="8" maxlength="20" name="n_password" placeholder="New Password" required>
+                      <input type="password"  class="form-control" minlength="8" maxlength="20" name="n_password" placeholder="Password Baru" required>
                     </div>
                   </div>
     

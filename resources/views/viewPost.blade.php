@@ -17,7 +17,7 @@
         <div class="col-md-12">
             {!! $post->content !!}
             <hr>
-            <button class="btn btn-primary btn-sm" onclick="likeUnlike()"><span id="count">0</span> <span id="like">Like</span></button>
+            <button class="btn btn-primary btn-sm" onclick="likeUnlike()"><span id="count">0</span> <span id="like">Suka</span></button>
             @if($own==0)
                 @if($fav==0)
                 <a href="{{ route("AddFavourite",["id"=>$post->id]) }}" class="btn btn-success btn-sm ml-2">Add as Favourite</a>
@@ -27,7 +27,7 @@
             @endif
         </div>
 
-        <div class="col-md-12 mt-5">
+        <!-- <div class="col-md-12 mt-5">
             <form method="post" action="{{ route("Comment",["id"=>$post->id]) }}">
                 @csrf
                 <div class="form-group row">
@@ -76,7 +76,7 @@
             <p>No comment for this post</p>
         </div>
         @endif
-    </div>
+    </div> -->
 
 
     <script>
@@ -109,11 +109,11 @@
             .then(res => res.json())
             .then((out) => {
                 if(out['liked']==0){
-                    document.getElementById("like").innerHTML ="Like"
+                    document.getElementById("like").innerHTML ="Suka"
                     liked=0
 
                 }else if(out['liked']==1){
-                    document.getElementById("like").innerHTML ="Unlike"
+                    document.getElementById("like").innerHTML ="Tidak suka"
                     liked=1;
                 }
                 
